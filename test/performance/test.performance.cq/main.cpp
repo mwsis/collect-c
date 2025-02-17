@@ -4,7 +4,7 @@
  * Purpose: Performance-test for circular queue.
  *
  * Created: 6th February 2025
- * Updated: 10th February 2025
+ * Updated: 17th February 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -16,8 +16,6 @@
 #define COLLECT_C_CIRCQ_SUPPRESS_CXX_WARNING
 #include <collect-c/terse/circq.h>
 #undef COLLECT_C_CIRCQ_SUPPRESS_CXX_WARNING
-
-#include <xtests/terse-api.h>
 
 #include <stlsoft/diagnostics/doomgram.hpp>
 #include <stlsoft/diagnostics/std_chrono_hrc_stopwatch.hpp>

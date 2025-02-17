@@ -4,7 +4,7 @@
  * Purpose: Vector container.
  *
  * Created: 5th February 2025
- * Updated: 14th February 2025
+ * Updated: 17th February 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -365,34 +365,34 @@ collect_c_v_push_front_by_ref(
                  * (2) we need to realloc;
                  */
 
-                 if (0 != v->offset)
-                 {
-                    size_t const    ix_src  =   0 + v->offset--;
-                     size_t const    ix_dst  =   0 + v->offset;
-                     void* const     pe_src   =   ((char*)v->storage) + (ix_src * v->el_size);
-                     void* const     pe_dst   =   ((char*)v->storage) + (ix_dst * v->el_size);
+                if (0 != v->offset)
+                {
+                size_t const    ix_src  =   0 + v->offset--;
+                    size_t const    ix_dst  =   0 + v->offset;
+                    void* const     pe_src   =   ((char*)v->storage) + (ix_src * v->el_size);
+                    void* const     pe_dst   =   ((char*)v->storage) + (ix_dst * v->el_size);
 
-                     memmove(pe_dst, pe_src, v->el_size * v->size);
+                    memmove(pe_dst, pe_src, v->el_size * v->size);
 
-                     --v->offset;
-                 }
-                 else
-                 {
-                    size_t const    cap_new =   (v->capacity * 3) / 2;
-                     size_t const    off_new =   uses_boo ? cap_new / 4 : 0;
-                     size_t const    cb_new  =   (cap_new + off_new) * v->el_size;
-                     void* const     pv_new  =   realloc(v->storage, cb_new);
+                    --v->offset;
+                }
+                else
+                {
+                size_t const    cap_new =   (v->capacity * 3) / 2;
+                    size_t const    off_new =   uses_boo ? cap_new / 4 : 0;
+                    size_t const    cb_new  =   (cap_new + off_new) * v->el_size;
+                    void* const     pv_new  =   realloc(v->storage, cb_new);
 
-                     if (NULL == pv_new)
-                     {
-                        return ENOMEM;
-                     }
-                     else
-                     {
-                        v->capacity =   cb_new;
-                        v->storage  =   pv_new;
-                     }
-                 }
+                    if (NULL == pv_new)
+                    {
+                    return ENOMEM;
+                    }
+                    else
+                    {
+                    v->capacity =   cb_new;
+                    v->storage  =   pv_new;
+                    }
+                }
              }
 #endif
         }
