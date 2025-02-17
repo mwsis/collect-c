@@ -4,7 +4,7 @@
  * Purpose: Doubly-linked list container.
  *
  * Created: 7th February 2025
- * Updated: 16th February 2025
+ * Updated: 17th February 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -30,8 +30,8 @@
 
 #define COLLECT_C_DLIST_VER_MAJOR       0
 #define COLLECT_C_DLIST_VER_MINOR       2
-#define COLLECT_C_DLIST_VER_PATCH       2
-#define COLLECT_C_DLIST_VER_ALPHABETA   44
+#define COLLECT_C_DLIST_VER_PATCH       3
+#define COLLECT_C_DLIST_VER_ALPHABETA   45
 
 #define COLLECT_C_DLIST_VER \
     (0\
@@ -490,6 +490,7 @@ collect_c_dlist_push_front_by_ref(
         .head = NULL,                                                       \
         .tail = NULL,                                                       \
         .spares = NULL,                                                     \
+        .blocks = NULL,                                                     \
         .param_element_free = (elf_param),                                  \
         .pfn_element_free = (elf_fn),                                       \
     }
