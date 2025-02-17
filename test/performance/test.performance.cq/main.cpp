@@ -166,8 +166,10 @@ display_results(
 ,   std::uint64_t   anchor_value
 )
 {
-    ((void)&num_iterations);
-    ((void)&tm_ns);
+    if (function_name == strstr(function_name, "`anonymous-namespace'::"))
+    {
+        function_name += 23;
+    }
 
     std::cout
         << '\t'

@@ -191,9 +191,14 @@ display_results(
 ,   std::uint64_t   anchor_value
 )
 {
+    if (function_name == strstr(function_name, "`anonymous-namespace'::"))
+    {
+        function_name += 23;
+    }
+
     auto divisor = num_iterations * num_actions;
     auto d = std::div(tm_ns, divisor);
-    auto rem_3dp = static_cast<interval_t>(std::roundf((1000.0 * d.rem) / divisor));
+    auto rem_3dp = static_cast<interval_t>(std::round((1000.0 * d.rem) / divisor));
 
     std::cout
         << '\t'
