@@ -149,6 +149,15 @@ collect_c_fn_cmp_ullong(
 );
 
 
+int
+collect_c_fn_cmp_ccs(
+    void const*     pe_lhs
+,   void const*     pe_rhs
+,   size_t          el_size
+);
+
+
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
