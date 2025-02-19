@@ -4,7 +4,7 @@
  * Purpose: Vector container.
  *
  * Created: 5th February 2025
- * Updated: 17th February 2025
+ * Updated: 19th February 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -28,10 +28,10 @@
  * helper functions and macros
  */
 
- #define COLLECT_C_VEC_INTERNAL_el_ptr_from_ix_(v, ix)      ((void*)(((char*)(v)->storage) + ((ix) * (v)->el_size)))
+#define COLLECT_C_VEC_INTERNAL_el_ptr_from_ix_(v, ix)      ((void*)(((char*)(v)->storage) + ((ix) * (v)->el_size)))
 
 
- /* /////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * API functions
  */
 
