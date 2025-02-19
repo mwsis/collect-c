@@ -35,6 +35,7 @@ static void TEST_collect_c_fn_cmp_int64(void);
 static void TEST_collect_c_fn_cmp_uint64(void);
 
 static void TEST_collect_c_fn_cmp_ccs(void);
+static void TEST_collect_c_fn_cmp_ccs_ignore_case(void);
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -60,6 +61,7 @@ int main(int argc, char* argv[])
         XTESTS_RUN_CASE(TEST_collect_c_fn_cmp_uint64);
 
         XTESTS_RUN_CASE(TEST_collect_c_fn_cmp_ccs);
+        XTESTS_RUN_CASE(TEST_collect_c_fn_cmp_ccs_ignore_case);
 
         XTESTS_PRINT_RESULTS();
 
@@ -1110,7 +1112,7 @@ static void TEST_collect_c_fn_cmp_ccs(void)
 
             int const   r   =   collect_c_fn_cmp_ccs(&lhs, &rhs, sizeof(lhs));
 
-            TEST_INT_LE(0, r);
+            TEST_INT_LT(0, r);
         }
 
         {
@@ -1119,7 +1121,7 @@ static void TEST_collect_c_fn_cmp_ccs(void)
 
             int const   r   =   collect_c_fn_cmp_ccs(&lhs, &rhs, sizeof(lhs));
 
-            TEST_INT_LE(0, r);
+            TEST_INT_LT(0, r);
         }
 
         {
@@ -1128,7 +1130,7 @@ static void TEST_collect_c_fn_cmp_ccs(void)
 
             int const   r   =   collect_c_fn_cmp_ccs(&lhs, &rhs, sizeof(lhs));
 
-            TEST_INT_LE(0, r);
+            TEST_INT_LT(0, r);
         }
 
         {
@@ -1137,7 +1139,7 @@ static void TEST_collect_c_fn_cmp_ccs(void)
 
             int const   r   =   collect_c_fn_cmp_ccs(&lhs, &rhs, sizeof(lhs));
 
-            TEST_INT_LE(0, r);
+            TEST_INT_LT(0, r);
         }
     }
 
@@ -1149,7 +1151,7 @@ static void TEST_collect_c_fn_cmp_ccs(void)
 
             int const   r   =   collect_c_fn_cmp_ccs(&lhs, &rhs, sizeof(lhs));
 
-            TEST_INT_GE(0, r);
+            TEST_INT_GT(0, r);
         }
 
         {
@@ -1158,7 +1160,7 @@ static void TEST_collect_c_fn_cmp_ccs(void)
 
             int const   r   =   collect_c_fn_cmp_ccs(&lhs, &rhs, sizeof(lhs));
 
-            TEST_INT_GE(0, r);
+            TEST_INT_GT(0, r);
         }
 
         {
@@ -1167,7 +1169,7 @@ static void TEST_collect_c_fn_cmp_ccs(void)
 
             int const   r   =   collect_c_fn_cmp_ccs(&lhs, &rhs, sizeof(lhs));
 
-            TEST_INT_GE(0, r);
+            TEST_INT_GT(0, r);
         }
 
         {
@@ -1176,7 +1178,136 @@ static void TEST_collect_c_fn_cmp_ccs(void)
 
             int const   r   =   collect_c_fn_cmp_ccs(&lhs, &rhs, sizeof(lhs));
 
-            TEST_INT_GE(0, r);
+            TEST_INT_GT(0, r);
+        }
+    }
+}
+
+static void TEST_collect_c_fn_cmp_ccs_ignore_case(void)
+{
+    /* == */
+    {
+        {
+            char const* lhs =   NULL;
+            char const* rhs =   NULL;
+
+            int const   r   =   collect_c_fn_cmp_ccs_ignore_case(&lhs, &rhs, sizeof(lhs));
+
+            TEST_INT_EQ(0, r);
+        }
+
+        {
+            char const* lhs =   "";
+            char const* rhs =   "";
+
+            int const   r   =   collect_c_fn_cmp_ccs_ignore_case(&lhs, &rhs, sizeof(lhs));
+
+            TEST_INT_EQ(0, r);
+        }
+
+        {
+            char const* lhs =   "";
+            char const* rhs =   NULL;
+
+            int const   r   =   collect_c_fn_cmp_ccs_ignore_case(&lhs, &rhs, sizeof(lhs));
+
+            TEST_INT_EQ(0, r);
+        }
+
+        {
+            char const* lhs =   NULL;
+            char const* rhs =   "";
+
+            int const   r   =   collect_c_fn_cmp_ccs_ignore_case(&lhs, &rhs, sizeof(lhs));
+
+            TEST_INT_EQ(0, r);
+        }
+
+        {
+            char const* lhs =   "abc";
+            char const* rhs =   "abc";
+
+            int const   r   =   collect_c_fn_cmp_ccs_ignore_case(&lhs, &rhs, sizeof(lhs));
+
+            TEST_INT_EQ(0, r);
+        }
+    }
+
+    /* < */
+    {
+        {
+            char const* lhs =   "abc";
+            char const* rhs =   "def";
+
+            int const   r   =   collect_c_fn_cmp_ccs_ignore_case(&lhs, &rhs, sizeof(lhs));
+
+            TEST_INT_LT(0, r);
+        }
+
+        {
+            char const* lhs =   "ABC";
+            char const* rhs =   "abc";
+
+            int const   r   =   collect_c_fn_cmp_ccs_ignore_case(&lhs, &rhs, sizeof(lhs));
+
+            TEST_INT_EQ(0, r);
+        }
+
+        {
+            char const* lhs =   "";
+            char const* rhs =   "def";
+
+            int const   r   =   collect_c_fn_cmp_ccs_ignore_case(&lhs, &rhs, sizeof(lhs));
+
+            TEST_INT_LT(0, r);
+        }
+
+        {
+            char const* lhs =   NULL;
+            char const* rhs =   "def";
+
+            int const   r   =   collect_c_fn_cmp_ccs_ignore_case(&lhs, &rhs, sizeof(lhs));
+
+            TEST_INT_LT(0, r);
+        }
+    }
+
+    /* > */
+    {
+        {
+            char const* lhs =   "def";
+            char const* rhs =   "abc";
+
+            int const   r   =   collect_c_fn_cmp_ccs_ignore_case(&lhs, &rhs, sizeof(lhs));
+
+            TEST_INT_GT(0, r);
+        }
+
+        {
+            char const* lhs =   "abc";
+            char const* rhs =   "ABC";
+
+            int const   r   =   collect_c_fn_cmp_ccs_ignore_case(&lhs, &rhs, sizeof(lhs));
+
+            TEST_INT_EQ(0, r);
+        }
+
+        {
+            char const* lhs =   "def";
+            char const* rhs =   "";
+
+            int const   r   =   collect_c_fn_cmp_ccs_ignore_case(&lhs, &rhs, sizeof(lhs));
+
+            TEST_INT_GT(0, r);
+        }
+
+        {
+            char const* lhs =   "def";
+            char const* rhs =   NULL;
+
+            int const   r   =   collect_c_fn_cmp_ccs_ignore_case(&lhs, &rhs, sizeof(lhs));
+
+            TEST_INT_GT(0, r);
         }
     }
 }

@@ -13,7 +13,7 @@
  * includes
  */
 
- #include <collect-c/common.h>
+#include <collect-c/common.h>
 
 #include <assert.h>
 #include <stdint.h>
@@ -528,6 +528,63 @@ collect_c_fn_cmp_ccs(
             else
             {
                 return strcmp(lhs, rhs);
+            }
+        }
+    }
+}
+
+int
+collect_c_fn_cmp_ccs_ignore_case(
+    void const*     pe_lhs
+,   void const*     pe_rhs
+,   size_t          el_size
+)
+{
+    assert(NULL != pe_lhs);
+    assert(NULL != pe_rhs);
+    assert(0 != el_size);
+    assert(sizeof(char const*) == el_size);
+
+    ((void)&el_size);
+
+    {
+        char const* const   lhs =   *(char const* const*)pe_lhs;
+        char const* const   rhs =   *(char const* const*)pe_rhs;
+
+        if (NULL == lhs)
+        {
+            if (NULL == rhs)
+            {
+                return 0;
+            }
+            else
+            {
+                if ('\0' == *rhs)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+        else
+        {
+            if (NULL == rhs)
+            {
+                if ('\0' == *lhs)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return +1;
+                }
+            }
+            else
+            {
+                return collect_c_stricmp(lhs, rhs);
             }
         }
     }

@@ -44,6 +44,7 @@ set(CORE_SRCS
 	dlist.c
 	mem_api.c
 	stock_cmp_fns.c
+	string_fns.c
 	vec.c
 	version.c
 )

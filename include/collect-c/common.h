@@ -15,6 +15,7 @@
 
 #include <collect-c/common/macros.h>
 #include <collect-c/common/mem_api.h>
+#include <collect-c/common/string.h>
 #ifndef __cplusplus
 # include <collect-c/common/version.h>
 #endif
@@ -151,6 +152,13 @@ collect_c_fn_cmp_ullong(
 
 int
 collect_c_fn_cmp_ccs(
+    void const*     pe_lhs
+,   void const*     pe_rhs
+,   size_t          el_size
+);
+
+int
+collect_c_fn_cmp_ccs_ignore_case(
     void const*     pe_lhs
 ,   void const*     pe_rhs
 ,   size_t          el_size
