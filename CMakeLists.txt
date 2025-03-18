@@ -5,7 +5,7 @@
 # Purpose:  Top-level CMake lists file for collect-c
 #
 # Created:  4th February 2025
-# Updated:  10th February 2025
+# Updated:  11th February 2025
 #
 # ######################################################################## #
 
@@ -39,7 +39,7 @@ string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWER)
 string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPER)
 
 # handle version number
-set(RX_PROJ_TAG "COLLECT_CXX")
+set(RX_PROJ_TAG "COLLECT_C")
 set(RX_WS "[ \t]")
 file(READ "${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/common/version.h" _header_file)
 string(REGEX MATCH "#${RX_WS}*define${RX_WS}+_?${RX_PROJ_TAG}_VER_MAJOR${RX_WS}+([0-9]+)" MAJOR_DUMMY ${_header_file})
